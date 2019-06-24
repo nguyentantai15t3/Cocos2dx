@@ -5,11 +5,11 @@
 USING_NS_CC;
 using namespace std;
 
-ResourceManager * ResourceManager::s_instance = nullptr;
+ResourceManager * ResourceManager::s_instance = nullptr;	// biến static = nullptr
 
 ResourceManager::ResourceManager()
 {
-	this->Init("res");
+	this->Init("res"); // gọi hàm init, đường dẫn res
 }
 
 ResourceManager::~ResourceManager()
@@ -18,8 +18,8 @@ ResourceManager::~ResourceManager()
 
 void ResourceManager::Init(const string path)
 {
-	this->m_dataFolderPath = path;
-	this->Load(this->m_dataFolderPath + "\Data.bin");
+	this->m_dataFolderPath = path; // gán m_dataFolderPath = res
+	this->Load(this->m_dataFolderPath + "\Data.bin");  // Load file bin nằm trong res
 }
 
 void ResourceManager::Load(string fileName)
@@ -28,7 +28,7 @@ void ResourceManager::Load(string fileName)
 	inFile.open(fileName);
 	if (inFile.is_open())
 	{
-		while (!inFile.eof())
+		while (!inFile.eof()) // end of file
 		{
 			string temp;
 			string normal_path;
@@ -42,11 +42,11 @@ void ResourceManager::Load(string fileName)
 				for (int i = 0; i < size; i++);
 				{
 					inFile >> temp;
-					inFile >> id;
+					inFile >> id; // lấy id của sprite
 					inFile >> temp;
 					inFile >> normal_path;
-					normal_path.replace(normal_path.find_first_of("%s"), 2, this->m_dataFolderPath);
-					auto sprite = Sprite::create(normal_path);
+					normal_path.replace(normal_path.find_first_of("%s"), 2, this->m_dataFolderPath); // thay %s = res
+					auto sprite = Sprite::create(normal_path); // tạo sprite = path
 					this->m_sprites.insert(pair<char, Sprite*>(id, sprite));
 				}
 			}
@@ -55,13 +55,13 @@ void ResourceManager::Load(string fileName)
 				inFile >> size;
 				for (int i = 0; i < size; i++);
 				{
+					inFile >> temp;	// bỏ qua 
+					inFile >> id;	// lấy id của button
 					inFile >> temp;
-					inFile >> id;
+					inFile >> normal_path;	// lấy đường dẫn 1
 					inFile >> temp;
-					inFile >> normal_path;
-					inFile >> temp;
-					inFile >> pressed_path;
-					normal_path.replace(normal_path.find_first_of("%s"), 2, this->m_dataFolderPath);
+					inFile >> pressed_path;	// lấy đường dẫn 2
+					normal_path.replace(normal_path.find_first_of("%s"), 2, this->m_dataFolderPath);	// thay %s = res
 					auto button = ui::Button::create(normal_path, pressed_path);
 					this->m_button.insert(pair<char, ui::Button*>(id, button));
 				}
@@ -71,11 +71,11 @@ void ResourceManager::Load(string fileName)
 				inFile >> size;
 				for (int i = 0; i < size; i++);
 				{
+					inFile >> temp;	// bỏ qua 
+					inFile >> id;	// lấy id của label
 					inFile >> temp;
-					inFile >> id;
-					inFile >> temp;
-					inFile >> normal_path;
-					normal_path.replace(normal_path.find_first_of("%s"), 2, this->m_dataFolderPath);
+					inFile >> normal_path;	// lấy đường dẫn
+					normal_path.replace(normal_path.find_first_of("%s"), 2, this->m_dataFolderPath);	// thay %s = res
 					auto lable = Label::createWithTTF(normal_path,"");
 					this->m_lable.insert(pair<char, Label*>(id, lable));
 				}
@@ -92,28 +92,28 @@ Sprite * ResourceManager::GetSpriteById(char id)
 {
 	auto sprite = this->m_sprites.at(id);
 	sprite->retain();
-	return sprite;
+	return sprite;	// trả về sprite có id = id truyền vào
 }
 
 ui::Button * ResourceManager::GetButtonById(char id)
 {
 	auto button = this->m_button.at(id);
 	button->retain();
-	return button;
+	return button;	// trả về button có id = id truyền vào
 }
 
 Label * ResourceManager::GetLabelById(char id)
 {
 	auto label = this->m_lable.at(id);
 	label->retain();
-	return label;
+	return label;	// trả về label có id = id truyền vào
 }
 
 ResourceManager * ResourceManager::GetInstance()
 {
-	if (!s_instance)
+	if (!s_instance)	// false
 	{
-		s_instance = new ResourceManager();
+		s_instance = new ResourceManager();	// tạo mới
 	}
 	return s_instance;
 }
@@ -122,5 +122,5 @@ Sprite * ResourceManager::GetBackgroundSprite()
 {
 	Sprite* background = Sprite::create("res/Sprites/background.png");
 	background->retain();
-	return background;
+	return background;	// trả về sprite background theo path
 }
