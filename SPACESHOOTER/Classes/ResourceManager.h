@@ -20,6 +20,7 @@ public:
 	ui::Button* GetButtonById(char id);
 	Label* GetLabelById(char id);
 	static ResourceManager* GetInstance();
+	Sprite *GetBackgroundSprite();
 
 private:
 	static ResourceManager* s_instance;

@@ -117,3 +117,10 @@ ResourceManager * ResourceManager::GetInstance()
 	}
 	return s_instance;
 }
+
+Sprite * ResourceManager::GetBackgroundSprite()
+{
+	Sprite* background = Sprite::create("res/Sprites/background.png");
+	background->retain();
+	return background;
+}
