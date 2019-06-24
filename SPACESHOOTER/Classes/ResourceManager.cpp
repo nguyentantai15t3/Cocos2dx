@@ -5,6 +5,8 @@
 USING_NS_CC;
 using namespace std;
 
+ResourceManager * ResourceManager::s_instance = nullptr;
+
 ResourceManager::ResourceManager()
 {
 	this->Init("res");

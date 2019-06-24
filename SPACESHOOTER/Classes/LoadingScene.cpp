@@ -2,12 +2,12 @@
 
 Scene * LoadingScene::createScene()
 {
-	return nullptr;
+	return Scene::create();
 }
 
 bool LoadingScene::init()
 {
-	return false;
+	return true;
 }
 
 void LoadingScene::Update(float deltaTime)
