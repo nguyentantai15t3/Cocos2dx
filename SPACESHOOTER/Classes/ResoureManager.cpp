@@ -31,3 +31,8 @@ Label * ResourceManager::GetLabelById(char id)
 {
 	return nullptr;
 }
+
+ResourceManager * ResourceManager::GetInstance()
+{
+	return nullptr;
+}

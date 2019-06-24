@@ -19,6 +19,7 @@ public:
 	Sprite* GetSpriteById(char id);
 	ui::Button* GetButtonById(char id);
 	Label* GetLabelById(char id);
+	static ResourceManager* GetInstance();
 
 private:
 	ResourceManager* s_instance;
