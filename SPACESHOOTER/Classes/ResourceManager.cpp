@@ -88,20 +88,30 @@ void ResourceManager::Load(string fileName)
 
 Sprite * ResourceManager::GetSpriteById(char id)
 {
-	return nullptr;
+	auto sprite = this->m_sprites.at(id);
+	sprite->retain();
+	return sprite;
 }
 
 ui::Button * ResourceManager::GetButtonById(char id)
 {
-	return nullptr;
+	auto button = this->m_button.at(id);
+	button->retain();
+	return button;
 }
 
 Label * ResourceManager::GetLabelById(char id)
 {
-	return nullptr;
+	auto label = this->m_lable.at(id);
+	label->retain();
+	return label;
 }
 
 ResourceManager * ResourceManager::GetInstance()
 {
-	return nullptr;
+	if (!s_instance)
+	{
+		s_instance = new ResourceManager();
+	}
+	return s_instance;
 }

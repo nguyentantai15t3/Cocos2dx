@@ -22,7 +22,7 @@ public:
 	static ResourceManager* GetInstance();
 
 private:
-	ResourceManager* s_instance;
+	static ResourceManager* s_instance;
 	string m_dataFolderPath;
 	map<char, Sprite*> m_sprites;
 	map<char, ui::Button*> m_button;
