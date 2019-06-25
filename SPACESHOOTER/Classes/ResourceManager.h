@@ -14,19 +14,17 @@ class ResourceManager
 public:
 	ResourceManager();
 	~ResourceManager();
-	void Init(const string path);
+	void init(const string path);
 	void Load(string fileName);
-	Sprite* GetSpriteById(char id);
-	ui::Button* GetButtonById(char id);
-	Label* GetLabelById(char id);
+	Sprite* GetSpriteById(int id);
+	ui::Button* GetButtonById(int id);
+	Label* GetLabelById(int id);
 	static ResourceManager* GetInstance();
-	Sprite *GetBackgroundSprite();
-
 private:
 	static ResourceManager* s_instance;
 	string m_dataFolderPath;
 	map<char, Sprite*> m_sprites;
 	map<char, ui::Button*> m_button;
-	map<char, Label*> m_lable;
+	map<char, Label*> m_label;
 };
 #endif

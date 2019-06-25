@@ -2,6 +2,7 @@
 
 #include "AppDelegate.h"
 #include "LoadingScene.h"
+#include "ResourceManager.h"
 
 // #define USE_AUDIO_ENGINE 1
 // #define USE_SIMPLE_AUDIO_ENGINE 1
@@ -66,6 +67,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     glview->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, ResolutionPolicy::NO_BORDER);
     auto frameSize = glview->getFrameSize();
     register_all_packages();
+	ResourceManager::GetInstance()->init("res");
     auto scene = LoadingScene::createScene();
 
     director->runWithScene(scene);

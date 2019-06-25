@@ -23,5 +23,6 @@ public:
 private:
 	vector <Rock*> m_rocks;
 	SpaceShooter *m_spaceShip;
+	Sprite* spaceship;
 };
 #endif

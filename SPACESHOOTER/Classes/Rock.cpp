@@ -10,6 +10,7 @@ Rock::~Rock()
 
 void Rock::Init()
 {
+	
 }
 
 void Rock::Update(float deltaTime)

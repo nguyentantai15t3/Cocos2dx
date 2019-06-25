@@ -9,7 +9,7 @@ class LoadingScene : public Scene
 public:
 	static Scene* createScene();
 	virtual bool init();
-	void Update(float deltaTime);
+	void update(float deltaTime);
 	CREATE_FUNC(LoadingScene);
 };
 #endif
