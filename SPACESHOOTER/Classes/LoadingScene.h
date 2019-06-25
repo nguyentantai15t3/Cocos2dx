@@ -8,8 +8,8 @@ class LoadingScene : public Scene
 {
 public:
 	static Scene* createScene();
-	virtual bool init();
-	void update(float deltaTime);
+	virtual bool init() override;
+	void update(float deltaTime) override;
 	CREATE_FUNC(LoadingScene);
 };
 #endif

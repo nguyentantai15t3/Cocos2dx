@@ -13,8 +13,8 @@ class PlayGameScene : public Scene
 {
 public:
 	static Scene* createScene();
-	virtual bool init();
-	void update(float deltaTime);
+	virtual bool init() override;
+	void update(float deltaTime) override;
 	void GenerateRock();
 	bool onTouchBegan(Touch*, Event*);
 	bool onTouchEnded(Touch*, Event*);

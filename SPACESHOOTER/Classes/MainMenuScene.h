@@ -8,7 +8,7 @@ class MainMenuScene : public Scene
 {
 public:
 	static Scene* createScene();
-	virtual bool init();
+	virtual bool init() override;
 	CREATE_FUNC(MainMenuScene);
 };
 #endif
