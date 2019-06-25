@@ -9,6 +9,7 @@ ResourceManager * ResourceManager::s_instance = nullptr;	// biến static = null
 
 ResourceManager::ResourceManager()
 {
+	this->init("res");
 }
 ResourceManager::~ResourceManager()
 {
@@ -16,8 +17,8 @@ ResourceManager::~ResourceManager()
 
 void ResourceManager::init(const string path)
 {
-	this->m_dataFolderPath = path; // gán m_dataFolderPath = res
-	this->Load(this->m_dataFolderPath+ "/Data.bin");  // Load file bin nằm trong res
+	this->m_dataFolderPath = path;						// gán m_dataFolderPath = res
+	this->Load(this->m_dataFolderPath+ "/Data.bin");	// Load file bin nằm trong res
 }
 
 void ResourceManager::Load(string fileName)
@@ -117,21 +118,21 @@ ResourceManager * ResourceManager::GetInstance()
 	return s_instance;
 }
 
-Sprite * ResourceManager::DuplicateSprite(Sprite * ​sprite​)
+Sprite * ResourceManager::DuplicateSprite(Sprite * sprite)
 {
-	Sprite* pRet = Sprite::createWithTexture(​sprite​->getTexture());
-	if (​sprite​->getChildrenCount() > 0)
+	Sprite* pRet = Sprite::createWithTexture(sprite->getTexture());
+	if (sprite->getChildrenCount() > 0)
 	{
-		for (int child = 0; child < ​sprite​->getChildrenCount(); child++)
+		for (int child = 0; child < sprite->getChildrenCount(); child++)
 		{
-			Sprite* spriteChild = (Sprite*)​sprite​->getChildren().at(child);
+			Sprite* spriteChild = (Sprite*)sprite->getChildren().at(child);
 			Sprite* clone = DuplicateSprite((Sprite*)spriteChild);
 			clone->boundingBox() = spriteChild->boundingBox();
 			clone->setContentSize(spriteChild->getContentSize());
 			clone->setPosition(spriteChild->getPosition());
-			clone->setAnchorPoint(spriteChild->getAnchorPoint());
-			pRet->addChild(clone, spriteChild->getZOrder(), spriteChild->getTag());
+			clone->setAnchorPoint(sprite->getAnchorPoint());
+			pRet->addChild(clone, spriteChild->getZOrder(), sprite->getTag());
 		}
-	};
+	}
 	return pRet;
 }
