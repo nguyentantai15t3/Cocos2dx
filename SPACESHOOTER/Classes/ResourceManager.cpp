@@ -59,6 +59,7 @@ void ResourceManager::Load(string fileName)
 					inFile >> ignore;
 					inFile >> pressed_path;	// lấy đường dẫn 2
 					normal_path.replace(0, 2, this->m_dataFolderPath);	// thay %s = res
+					pressed_path.replace(0, 2, this->m_dataFolderPath);	// thay %s = res
 					auto button = ui::Button::create(normal_path, pressed_path);
 					button->retain();
 					this->m_button.insert(pair<char, ui::Button*>(id, button));
@@ -114,4 +115,23 @@ ResourceManager * ResourceManager::GetInstance()
 		s_instance = new ResourceManager();	// tạo mới
 	}
 	return s_instance;
+}
+
+Sprite * ResourceManager::DuplicateSprite(Sprite * ​sprite​)
+{
+	Sprite* pRet = Sprite::createWithTexture(​sprite​->getTexture());
+	if (​sprite​->getChildrenCount() > 0)
+	{
+		for (int child = 0; child < ​sprite​->getChildrenCount(); child++)
+		{
+			Sprite* spriteChild = (Sprite*)​sprite​->getChildren().at(child);
+			Sprite* clone = DuplicateSprite((Sprite*)spriteChild);
+			clone->boundingBox() = spriteChild->boundingBox();
+			clone->setContentSize(spriteChild->getContentSize());
+			clone->setPosition(spriteChild->getPosition());
+			clone->setAnchorPoint(spriteChild->getAnchorPoint());
+			pRet->addChild(clone, spriteChild->getZOrder(), spriteChild->getTag());
+		}
+	};
+	return pRet;
 }

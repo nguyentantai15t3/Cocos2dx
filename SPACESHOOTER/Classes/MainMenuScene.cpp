@@ -35,6 +35,8 @@ bool MainMenuScene::init()
 	{
 		switch (type)
 		{
+		case cocos2d::ui::Widget::TouchEventType::BEGAN:
+			break;
 		case cocos2d::ui::Widget::TouchEventType::ENDED:
 			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, PlayGameScene::create()));
 			break;

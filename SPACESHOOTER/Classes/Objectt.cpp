@@ -11,3 +11,7 @@ Objectt::Objectt()
 Objectt::~Objectt()
 {
 }
+Sprite * Objectt::GetSprite()
+{
+	return m_sprite;
+}

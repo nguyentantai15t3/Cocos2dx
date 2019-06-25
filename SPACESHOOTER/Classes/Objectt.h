@@ -10,9 +10,10 @@ class Objectt
 public:
 	Objectt();
 	~Objectt();
+	Sprite * GetSprite();
 	virtual void Update(float deltaTime)=0;
 	virtual void Init()=0;
-private:
+protected:
 	Sprite* m_sprite;
 };
 #endif

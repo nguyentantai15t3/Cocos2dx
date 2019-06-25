@@ -20,6 +20,7 @@ public:
 	ui::Button* GetButtonById(int id);
 	Label* GetLabelById(int id);
 	static ResourceManager* GetInstance();
+	Sprite* DuplicateSprite(Sprite * ​sprite​);
 private:
 	static ResourceManager* s_instance;
 	string m_dataFolderPath;

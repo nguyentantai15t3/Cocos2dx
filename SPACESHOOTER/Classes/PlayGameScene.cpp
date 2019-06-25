@@ -22,15 +22,11 @@ bool PlayGameScene::init()
 	backGround->setScale(0.7f);
 	addChild(backGround, -1);
 
-	spaceship = ResourceManager::GetInstance()->GetSpriteById(4);
-	spaceship->setPosition(screenSize.width / 2, 50);
-	addChild(spaceship, 0);
-
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = CC_CALLBACK_2(PlayGameScene::onTouchBegan, this);
 	listener->onTouchMoved = CC_CALLBACK_2(PlayGameScene::onTouchMoved, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-
+	m_spaceShip = new SpaceShooter(this);
 	return true;
 }
 
@@ -46,7 +42,7 @@ bool PlayGameScene::onTouchBegan(Touch *touch, Event *event)
 {
 	Point touchLocation = touch->getLocation();
 
-	if (spaceship->getBoundingBox().containsPoint(touchLocation))
+	if (m_spaceShip->GetSprite()->getBoundingBox().containsPoint(touchLocation))
 	{
 		return true;
 	}
@@ -61,5 +57,5 @@ bool PlayGameScene::onTouchEnded(Touch *, Event *)
 
 void PlayGameScene::onTouchMoved(Touch *touch, Event *event)
 {
-	spaceship->setPosition(spaceship->getPosition() + touch->getDelta());
+	m_spaceShip->GetSprite()->setPosition(m_spaceShip->GetSprite()->getPosition() + touch->getDelta());
 }
