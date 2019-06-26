@@ -77,4 +77,5 @@ void SpaceShooter::Shoot()
 
 void SpaceShooter::Collision(vector <Rock*>)
 {
+
 }
