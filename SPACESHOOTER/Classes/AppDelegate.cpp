@@ -67,10 +67,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
     director->setAnimationInterval(1.0f / 60); 
     glview->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, ResolutionPolicy::NO_BORDER);
     auto frameSize = glview->getFrameSize();
-    register_all_packages();
-	ResourceManager::GetInstance()->init("res");
-    
-	auto scene = PlayGameScene::createScene();
+    register_all_packages();    
+	auto scene = LoadingScene::createScene();
     director->runWithScene(scene);
 
     return true;

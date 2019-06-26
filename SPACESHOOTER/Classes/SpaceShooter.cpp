@@ -2,10 +2,8 @@
 #include "ResourceManager.h"
 #include "Bullet.h"
 #include "GameOverScene.h"
-#include "LoadingScene.h"
+#include "PlayGameScene.h"
 #define SizeOfList 20
-
-int count=0;
 
 SpaceShooter::SpaceShooter(Scene * scene)
 {
@@ -73,11 +71,10 @@ void SpaceShooter::Shoot()
 		member_bullets++;
 	}
 }
-
-void SpaceShooter::Collision(vector <Rock*> rocks,float deltaTime)
+int score = 0;
+void SpaceShooter::Collision(vector <Rock*> rocks)
 {
 	//	If (a->getBoundingBox()->intersectsRect(b-> getBoundingBox()))
-	log("%f", deltaTime);
 	auto getBSpaceShip = this->m_sprite->getBoundingBox();
 	auto member_bullets = this->m_bullets.begin();
 	for (int i = 0; i < SizeOfList; i++)
@@ -92,13 +89,15 @@ void SpaceShooter::Collision(vector <Rock*> rocks,float deltaTime)
 				{
 					if (getBSpaceShip.intersectsRect(getBRock))
 					{
-						//Director::getInstance()->getRunningScene()->pause();
-						//Director::getInstance()->replaceScene(TransitionZoomFlipAngular::create(1, GameOverScene::createScene()));
+						Director::getInstance()->getRunningScene()->pause();
+						Director::getInstance()->replaceScene(TransitionFade::create(2.0f, GameOverScene::createScene(score)));
+						break;
 					}
 					if (getBRock.intersectsRect(getBBullet))
 					{
 						rocks.at(j)->GetSprite()->setVisible(false);
 						(*member_bullets)->GetSprite()->setVisible(false);
+						score++;
 					}
 				}
 			}			
@@ -106,4 +105,5 @@ void SpaceShooter::Collision(vector <Rock*> rocks,float deltaTime)
 		member_bullets++;
 	}
 }
+
 

@@ -19,9 +19,12 @@ public:
 	bool onTouchBegan(Touch*, Event*);
 	bool onTouchEnded(Touch*, Event*);
 	void onTouchMoved(Touch*, Event*);
-	CREATE_FUNC(PlayGameScene);
+
+	
+	CREATE_FUNC(PlayGameScene);	
 private:
 	vector <Rock*> m_rocks;
-	SpaceShooter *m_spaceShip; // kế thừa object
+	SpaceShooter *m_spaceShip;
+
 };
 #endif

@@ -1,6 +1,7 @@
 #include "LoadingScene.h"
 #include "ResourceManager.h"
 #include "MainMenuScene.h"
+#include "GameOverScene.h"
 
 USING_NS_CC;
 

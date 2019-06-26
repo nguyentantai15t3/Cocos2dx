@@ -40,19 +40,19 @@ bool PlayGameScene::init()
 	scheduleUpdate();
 	return true;
 }
-int temp2 = 0;
+int countt = 0;
 void PlayGameScene::update(float deltaTime)
 {
-	m_spaceShip->Collision(m_rocks,deltaTime);
+	m_spaceShip->Collision(m_rocks);
 	m_spaceShip->Update(deltaTime);
-	if (temp2 == 10)
+	if (countt == 10)
 	{
 		GenerateRock();
-		temp2 = 0;
+		countt = 0;
 	}
 	else
 	{
-		temp2++;
+		countt++;
 	}
 	for (int i = 0; i < m_rocks.size(); i++)
 	{

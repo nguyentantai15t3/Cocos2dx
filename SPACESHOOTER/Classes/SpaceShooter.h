@@ -17,7 +17,7 @@ public:
 	void Init() override;
 	void Update(float deltaTime) override;
 	void Shoot();
-	void Collision(vector < Rock*>,float deltaTime);
+	void Collision(vector < Rock*>);
 private:
 	list<Objectt*> m_bullets;
 };
