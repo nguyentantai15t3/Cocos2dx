@@ -27,6 +27,6 @@ void Bullet::init()
 
 void Bullet::update(float deltaTime)
 {
-	this->m_sprite->setPosition(this->m_sprite->getPositionX(),this->m_sprite->getPositionY() + 10);
+	m_sprite->setPosition(m_sprite->getPositionX(), m_sprite->getPositionY() + 7);
 }
 

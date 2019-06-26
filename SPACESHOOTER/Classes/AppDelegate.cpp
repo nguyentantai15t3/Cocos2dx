@@ -70,7 +70,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     register_all_packages();
 	ResourceManager::GetInstance()->init("res");
     
-	auto scene = LoadingScene::createScene();
+	auto scene = PlayGameScene::createScene();
     director->runWithScene(scene);
 
     return true;

@@ -1,7 +1,7 @@
 #include "SpaceShooter.h"
 #include "ResourceManager.h"
 #include "Bullet.h"
-#define SizeOfList 10
+#define SizeOfList 20
 
 int count=0;
 
@@ -46,7 +46,7 @@ void SpaceShooter::update(float deltaTime)
 	auto member_bullets = this->m_bullets.begin();
 	for (int i = 0; i < SizeOfList; i++)
 	{
-		if (!(*member_bullets)->GetSprite()->isVisible())
+		if ((*member_bullets)->GetSprite()->isVisible())
 		{
 			(*member_bullets)->update(deltaTime);
 			if ((*member_bullets)->GetSprite()->getPositionY()
@@ -55,7 +55,6 @@ void SpaceShooter::update(float deltaTime)
 				(*member_bullets)->GetSprite()->setVisible(false);
 				(*member_bullets)->GetSprite()->setPosition(this->m_sprite->getPosition());
 			}
-			break;
 		}
 		member_bullets++;
 	}
