@@ -5,6 +5,7 @@
 USING_NS_CC;
 
 int temp = 0;
+float temp2=0;
 
 Scene * LoadingScene::createScene()
 {
@@ -54,7 +55,9 @@ bool LoadingScene::init()
 void LoadingScene::update(float deltaTime)
 {
 	temp++;
-	if(temp == 180) // 3s - 60fps/1s
+	//temp2 += deltaTime;
+	//log("%f", temp2);
+	if(temp == 180 ) // 3s - 60fps/1s
 	{
 		Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMenuScene::create()));
 	}
