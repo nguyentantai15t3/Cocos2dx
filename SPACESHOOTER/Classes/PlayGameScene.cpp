@@ -26,6 +26,7 @@ bool PlayGameScene::init()
 	listener->onTouchBegan = CC_CALLBACK_2(PlayGameScene::onTouchBegan, this);
 	listener->onTouchMoved = CC_CALLBACK_2(PlayGameScene::onTouchMoved, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+
 	m_spaceShip = new SpaceShooter(this);
 	return true;
 }

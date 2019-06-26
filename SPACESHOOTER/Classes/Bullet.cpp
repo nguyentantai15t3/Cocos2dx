@@ -5,6 +5,7 @@ Bullet::Bullet(Scene * scene)
 {
 	this->Init();
 	this->m_sprite->setVisible(false);
+	this->m_sprite->removeFromParent();
 	scene->addChild(this->m_sprite);
 }
 

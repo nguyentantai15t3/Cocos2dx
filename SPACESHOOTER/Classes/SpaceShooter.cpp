@@ -3,7 +3,7 @@
 #include "Bullet.h"
 #define SizeOfList 10
 
-int count;
+int count=0;
 
 SpaceShooter::SpaceShooter(Scene * scene)
 {
@@ -33,7 +33,7 @@ void SpaceShooter::Init()
 
 void SpaceShooter::Update(float deltaTime)
 {
-	// 
+	
 }
 
 void SpaceShooter::Shoot()
@@ -41,10 +41,10 @@ void SpaceShooter::Shoot()
 	auto member_bullets = this->m_bullets.begin();
 	for (int i = 0; i < SizeOfList; i++)
 	{
-		if (!(*member_bullets)->GetSprite()->isVisible)
+		if (!((*member_bullets)->GetSprite()->isVisible()))
 		{
 			(*member_bullets)->GetSprite()->setVisible(true);
-			(*member_bullets)->GetSprite()->setPosition(this->m_sprite->getPosition);
+			(*member_bullets)->GetSprite()->setPosition(this->m_sprite->getPosition());
 		}
 		(*member_bullets)++;
 	}

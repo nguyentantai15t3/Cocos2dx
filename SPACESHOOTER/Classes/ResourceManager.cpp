@@ -94,19 +94,31 @@ void ResourceManager::Load(string fileName)
 Sprite * ResourceManager::GetSpriteById(int id)
 {
 	auto sprite = this->m_sprites[id];
-	return sprite;	// trả về sprite có id = id truyền vào
+	auto tmp = m_sprites.find(id);
+	while (tmp != m_sprites.end())
+	{
+		return tmp->second;
+	}
 }
 
 ui::Button * ResourceManager::GetButtonById(int id)
 {
 	auto button = this->m_button[id];
-	return button;	// trả về button có id = id truyền vào
+	auto tmp = m_button.find(id);
+	while (tmp != m_button.end())
+	{
+		return tmp->second;
+	}
 }
 
 Label * ResourceManager::GetLabelById(int id)
 {
 	auto label = this->m_label[id];
-	return label;	// trả về label có id = id truyền vào
+	auto tmp = m_label.find(id);
+	while (tmp != m_label .end())
+	{
+		return tmp->second;
+	}
 }
 
 ResourceManager * ResourceManager::GetInstance()

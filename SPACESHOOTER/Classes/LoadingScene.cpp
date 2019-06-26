@@ -9,13 +9,13 @@ float temp2=0;
 
 Scene * LoadingScene::createScene()
 {
-	auto scene = Scene::create();
-	auto layer = LoadingScene::create();
-	scene->addChild(layer);
-	return scene;
+	return LoadingScene::create();
 }
 bool LoadingScene::init()
 {
+	if (!Scene::init())
+		return false;
+
 	auto screenSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
@@ -48,17 +48,17 @@ bool LoadingScene::init()
 	auto scale = ScaleBy::create(3, 100.0f, 1.0f);
 	scheduleUpdate();
 	progress->runAction(scale);
-	
+	scheduleUpdate();
 	return true;
 }
 
 void LoadingScene::update(float deltaTime)
 {
-	temp++;
-	//temp2 += deltaTime;
-	//log("%f", temp2);
-	if(temp == 180 ) // 3s - 60fps/1s
+	//temp++;
+	temp2 += deltaTime;
+	log("%f", temp2);
+	if(temp2 > 3.0f ) // 3s - 60fps/1s
 	{
-		Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMenuScene::create()));
+		Director::getInstance()->replaceScene(MainMenuScene::createScene());
 	}
 }

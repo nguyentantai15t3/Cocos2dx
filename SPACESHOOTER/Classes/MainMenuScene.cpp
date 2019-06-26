@@ -4,14 +4,14 @@
 
 Scene * MainMenuScene::createScene()
 {
-	auto scene = Scene::create();
-	auto layer = MainMenuScene::create();
-	scene->addChild(layer);
-	return scene;
+	return MainMenuScene::create();
 }
 
 bool MainMenuScene::init()
 {
+	if (!Scene::init())
+		return false;
+
 	auto screenSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
@@ -22,12 +22,14 @@ bool MainMenuScene::init()
 	addChild(backGround, -1);
 
 	auto logoGame = ResourceManager::GetInstance()->GetSpriteById(1);
+	logoGame->removeFromParent();
 	logoGame->setPosition(screenSize.width / 2, screenSize.height*2 / 3 );
 	logoGame->setScaleY(0.5);
 	logoGame->setScaleX(0.7);
 	addChild(logoGame,0);
 
 	auto buttonPlay = ResourceManager::GetInstance()->GetButtonById(0);
+	buttonPlay->removeFromParent();
 	buttonPlay->setPosition(Vec2(screenSize.width/2,screenSize.height/2));
 	buttonPlay->setScale(0.5f);
 	addChild(buttonPlay, 0);
