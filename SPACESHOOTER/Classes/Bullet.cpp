@@ -24,5 +24,9 @@ void Bullet::init()
 void Bullet::update(float deltaTime)
 {
 	m_sprite->setPosition(m_sprite->getPositionX(), m_sprite->getPositionY() + 7);
+	if (m_sprite->getPositionY() > Director::getInstance()->getVisibleSize().height)
+	{
+		m_sprite->setVisible(false);
+	}
 }
 

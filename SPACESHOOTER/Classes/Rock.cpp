@@ -23,4 +23,8 @@ void Rock::init()
 void Rock::update(float deltaTime)
 {
 	m_sprite->setPosition(this->m_sprite->getPositionX(), m_sprite->getPositionY() - 7);
+	if (m_sprite->getPositionY()<0)
+	{
+		m_sprite->setVisible(false);
+	}
 }

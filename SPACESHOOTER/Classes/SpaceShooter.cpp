@@ -9,7 +9,7 @@ SpaceShooter::SpaceShooter(Scene * scene)
 {
 	this->init();
 	this->m_sprite->removeFromParent();
-	scene->addChild(this->m_sprite, 0);
+	scene->addChild(this->m_sprite, 5);
 	for (int i = 0; i < SizeOfList; i++)
 	{
 		// tạo list đạn
@@ -34,7 +34,7 @@ int temp = 0;
 void SpaceShooter::update(float deltaTime)
 {
 	
-	if (temp == 10)
+	if (temp == 15)
 	{
 		Shoot();
 		temp = 0;
@@ -49,12 +49,6 @@ void SpaceShooter::update(float deltaTime)
 		if ((*member_bullets)->GetSprite()->isVisible())
 		{
 			(*member_bullets)->update(deltaTime);
-			if ((*member_bullets)->GetSprite()->getPositionY()
-											> Director::getInstance()->getVisibleSize().height)
-			{
-				(*member_bullets)->GetSprite()->setVisible(false);
-				(*member_bullets)->GetSprite()->setPosition(this->m_sprite->getPosition());
-			}
 		}
 		member_bullets++;
 	}
@@ -75,7 +69,15 @@ void SpaceShooter::Shoot()
 	}
 }
 
-void SpaceShooter::Collision(vector <Rock*>)
+void SpaceShooter::Collision(vector <Rock*> rocks)
 {
-
+	//	If (a->getBoundingBox()->intersectsRect(b-> getBoundingBox()))
+	auto getboundingboxSpaceShooter = this->m_sprite->getBoundingBox();
+	for (int i = 0; i < rocks.size(); i++)
+	{
+		if (rocks[i]->GetSprite()->isVisible())
+		{
+		}
+	}
 }
+

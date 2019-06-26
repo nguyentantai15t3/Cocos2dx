@@ -1,5 +1,7 @@
 #include "PlayGameScene.h"
 #include "ResourceManager.h"
+#include <ctime>
+
 #define SizeOfRock 20
 USING_NS_CC;
 
@@ -13,6 +15,7 @@ Scene * PlayGameScene::createScene()
 
 bool PlayGameScene::init()
 {
+	srand(time(NULL));
 	auto screenSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
@@ -41,7 +44,7 @@ int temp2 = 0;
 void PlayGameScene::update(float deltaTime)
 {
 	m_spaceShip->update(deltaTime);
-	if (temp2 == 10)
+	if (temp2 == 15)
 	{
 		GenerateRock();
 		temp2 = 0;
@@ -54,14 +57,7 @@ void PlayGameScene::update(float deltaTime)
 	{
 		if (m_rocks[i]->GetSprite()->isVisible())
 		{
-			m_rocks[i]->update(deltaTime);
-			if (m_rocks[i]->GetSprite()->getPositionY()<0 )
-			{
-				m_rocks[i]->GetSprite()->setVisible(false);
-				auto screenSize = Director::getInstance()->getVisibleSize();
-				int width = screenSize.width;
-				m_rocks[i]->GetSprite()->setPosition(rand() % width, screenSize.height + 50);
-			}
+			m_rocks[i]->update(deltaTime);			
 		}
 	}
 }
