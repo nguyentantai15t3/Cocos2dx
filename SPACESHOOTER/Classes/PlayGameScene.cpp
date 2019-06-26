@@ -28,11 +28,13 @@ bool PlayGameScene::init()
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
 	m_spaceShip = new SpaceShooter(this);
+	scheduleUpdate();
 	return true;
 }
 
 void PlayGameScene::update(float deltaTime)
 {
+	m_spaceShip->update(deltaTime);
 }
 
 void PlayGameScene::GenerateRock()

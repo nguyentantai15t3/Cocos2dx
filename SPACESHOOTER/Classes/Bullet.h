@@ -13,7 +13,7 @@ public:
 	Bullet(Scene *scene);
 	Bullet(const Bullet* bullet);
 	~Bullet();
-	void Init() override;
-	void Update(float deltaTime) override;
+	void init() override;
+	void update(float deltaTime) override;
 };
 #endif

@@ -8,11 +8,11 @@ Rock::~Rock()
 {
 }
 
-void Rock::Init()
+void Rock::init()
 {
 	
 }
 
-void Rock::Update(float deltaTime)
+void Rock::update(float deltaTime)
 {
 }

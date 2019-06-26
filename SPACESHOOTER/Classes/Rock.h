@@ -11,7 +11,7 @@ class Rock: public Objectt
 public:
 	Rock(Scene *scene);
 	~Rock();
-	void Init() override;
-	void Update(float deltaTime) override;
+	void init() override;
+	void update(float deltaTime) override;
 };
 #endif

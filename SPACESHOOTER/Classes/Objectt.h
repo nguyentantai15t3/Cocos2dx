@@ -11,8 +11,8 @@ public:
 	Objectt();
 	~Objectt();
 	Sprite * GetSprite();
-	virtual void Update(float deltaTime)=0;
-	virtual void Init()=0;
+	virtual void update(float deltaTime)=0;
+	virtual void init()=0;
 protected:
 	Sprite* m_sprite;
 };

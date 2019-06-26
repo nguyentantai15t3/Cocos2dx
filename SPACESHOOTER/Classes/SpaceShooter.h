@@ -14,8 +14,8 @@ class SpaceShooter: public Objectt
 public:
 	SpaceShooter(Scene *scene);
 	~SpaceShooter();
-	void Init() override;
-	void Update(float deltaTime) override;
+	void init() override;
+	void update(float deltaTime) override;
 	void Shoot();
 	void Collision(vector < Rock*>);
 private:

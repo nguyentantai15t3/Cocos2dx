@@ -3,7 +3,7 @@
 
 Bullet::Bullet(Scene * scene)
 {
-	this->Init();
+	this->init();
 	this->m_sprite->setVisible(false);
 	this->m_sprite->removeFromParent();
 	scene->addChild(this->m_sprite,0);
@@ -18,15 +18,14 @@ Bullet::~Bullet()
 {
 }
 
-void Bullet::Init()
+void Bullet::init()
 {
 	this->m_sprite = (ResourceManager::GetInstance()->GetSpriteById(2));
-	ResourceManager::GetInstance()->DuplicateSprite(this->m_sprite);
+	this->m_sprite= ResourceManager::GetInstance()->DuplicateSprite(this->m_sprite);
 }
 
-void Bullet::Update(float deltaTime)
+void Bullet::update(float deltaTime)
 {
-	// 10 frame - 1 đạn
-	
+	this->m_sprite->setPosition(this->m_sprite->getPositionX(),this->m_sprite->getPositionY() + 10);
 }
 
