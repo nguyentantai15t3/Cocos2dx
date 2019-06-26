@@ -3,6 +3,7 @@
 #include "AppDelegate.h"
 #include "LoadingScene.h"
 #include "ResourceManager.h"
+#include "PlayGameScene.h"
 
 // #define USE_AUDIO_ENGINE 1
 // #define USE_SIMPLE_AUDIO_ENGINE 1
@@ -68,7 +69,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     auto frameSize = glview->getFrameSize();
     register_all_packages();
 	ResourceManager::GetInstance()->init("res");
-    auto scene = LoadingScene::createScene();
+    auto scene = PlayGameScene::createScene();
 
     director->runWithScene(scene);
 

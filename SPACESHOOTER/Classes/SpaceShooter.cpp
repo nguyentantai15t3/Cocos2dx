@@ -9,13 +9,13 @@ SpaceShooter::SpaceShooter(Scene * scene)
 {
 	this->Init();
 	this->m_sprite->removeFromParent();
-	scene->addChild(this->m_sprite, 1);
-	for (int i = 0; i < SizeOfList; i++)
-	{
-		// tạo list đạn
-		auto bullet = new Bullet(scene);
-		this->m_bullets.push_back(bullet);
-	}
+	scene->addChild(this->m_sprite, 0);
+	//for (int i = 0; i < SizeOfList; i++)
+	//{
+	//	// tạo list đạn
+	//	auto bullet = new Bullet(scene);
+	//	this->m_bullets.push_back(bullet);
+	//}
 }
 
 SpaceShooter::~SpaceShooter()
@@ -45,6 +45,7 @@ void SpaceShooter::Shoot()
 		{
 			(*member_bullets)->GetSprite()->setVisible(true);
 			(*member_bullets)->GetSprite()->setPosition(this->m_sprite->getPosition());
+			break;
 		}
 		(*member_bullets)++;
 	}

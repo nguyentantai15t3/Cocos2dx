@@ -22,6 +22,6 @@ public:
 	CREATE_FUNC(PlayGameScene);
 private:
 	vector <Rock*> m_rocks;
-	SpaceShooter *m_spaceShip;
+	SpaceShooter *m_spaceShip; // kế thừa object
 };
 #endif

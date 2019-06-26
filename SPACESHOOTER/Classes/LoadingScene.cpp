@@ -4,8 +4,6 @@
 
 USING_NS_CC;
 
-int temp = 0;
-float temp2=0;
 
 Scene * LoadingScene::createScene()
 {
@@ -46,18 +44,18 @@ bool LoadingScene::init()
 	addChild(progress);
 
 	auto scale = ScaleBy::create(3, 100.0f, 1.0f);
-	scheduleUpdate();
 	progress->runAction(scale);
 	scheduleUpdate();
 	return true;
 }
 
+float temp = 0;
+
 void LoadingScene::update(float deltaTime)
 {
-	//temp++;
-	temp2 += deltaTime;
-	log("%f", temp2);
-	if(temp2 > 3.0f ) // 3s - 60fps/1s
+	temp += deltaTime;
+	log("%f", temp);
+	if(temp > 3.0f ) // 3s - 60fps/1s
 	{
 		Director::getInstance()->replaceScene(MainMenuScene::createScene());
 	}

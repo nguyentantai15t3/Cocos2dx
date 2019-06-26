@@ -58,5 +58,6 @@ bool PlayGameScene::onTouchEnded(Touch *, Event *)
 
 void PlayGameScene::onTouchMoved(Touch *touch, Event *event)
 {
-	m_spaceShip->GetSprite()->setPosition(m_spaceShip->GetSprite()->getPosition() + touch->getDelta());
+	//m_spaceShip->GetSprite()->setPosition(m_spaceShip->GetSprite()->getPosition() + touch->getDelta());
+	m_spaceShip->GetSprite()->setPosition(touch->getLocation());
 }
