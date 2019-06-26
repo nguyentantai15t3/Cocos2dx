@@ -69,8 +69,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
     auto frameSize = glview->getFrameSize();
     register_all_packages();
 	ResourceManager::GetInstance()->init("res");
-    auto scene = PlayGameScene::createScene();
-
+    
+	auto scene = LoadingScene::createScene();
     director->runWithScene(scene);
 
     return true;

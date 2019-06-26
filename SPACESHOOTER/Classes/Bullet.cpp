@@ -22,6 +22,7 @@ void Bullet::init()
 {
 	this->m_sprite = (ResourceManager::GetInstance()->GetSpriteById(2));
 	this->m_sprite= ResourceManager::GetInstance()->DuplicateSprite(this->m_sprite);
+	this->m_sprite->setVisible(false);
 }
 
 void Bullet::update(float deltaTime)

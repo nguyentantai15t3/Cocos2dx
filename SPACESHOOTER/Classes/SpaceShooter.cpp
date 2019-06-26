@@ -46,7 +46,7 @@ void SpaceShooter::update(float deltaTime)
 	auto member_bullets = this->m_bullets.begin();
 	for (int i = 0; i < SizeOfList; i++)
 	{
-		if ((*member_bullets)->GetSprite()->isVisible())
+		if (!(*member_bullets)->GetSprite()->isVisible())
 		{
 			(*member_bullets)->update(deltaTime);
 			if ((*member_bullets)->GetSprite()->getPositionY()
