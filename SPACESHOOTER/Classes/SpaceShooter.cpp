@@ -1,6 +1,7 @@
 #include "SpaceShooter.h"
 #include "ResourceManager.h"
 #include "Bullet.h"
+#include "GameOverScene.h"
 #define SizeOfList 20
 
 int count=0;
@@ -9,7 +10,7 @@ SpaceShooter::SpaceShooter(Scene * scene)
 {
 	this->init();
 	this->m_sprite->removeFromParent();
-	scene->addChild(this->m_sprite, 5);
+	scene->addChild(this->m_sprite, 1);
 	for (int i = 0; i < SizeOfList; i++)
 	{
 		// tạo list đạn
@@ -72,11 +73,28 @@ void SpaceShooter::Shoot()
 void SpaceShooter::Collision(vector <Rock*> rocks)
 {
 	//	If (a->getBoundingBox()->intersectsRect(b-> getBoundingBox()))
-	auto getboundingboxSpaceShooter = this->m_sprite->getBoundingBox();
 	for (int i = 0; i < rocks.size(); i++)
 	{
+		if (rocks[i]->GetSprite()->isVisible()
+			&& (rocks[i]->GetSprite()->getBoundingBox().intersectsRect(this->m_sprite->getBoundingBox())))
+		{
+			Director::getInstance()->getRunningScene()->pause();
+			Director::getInstance()->replaceScene(TransitionFade::create(2.0f, GameOverScene::createScene()));
+		}
 		if (rocks[i]->GetSprite()->isVisible())
 		{
+			auto member_bullets = this->m_bullets.begin();
+			for (int i = 0; i < SizeOfList; i++)
+			{
+				if (((*member_bullets)->GetSprite()->isVisible())
+					&& (rocks[i]->GetSprite()->getBoundingBox().intersectsRect((*member_bullets)->GetSprite()->getBoundingBox())))
+				{
+					rocks[i]->GetSprite()->setVisible(false);
+					rocks[i]->GetSprite()->stopActionByTag(1);
+					(*member_bullets)->GetSprite()->setVisible(false);
+					(*member_bullets)->GetSprite()->stopActionByTag(1);
+				}
+			}
 		}
 	}
 }

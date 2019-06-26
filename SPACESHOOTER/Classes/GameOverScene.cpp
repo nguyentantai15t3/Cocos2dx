@@ -2,7 +2,7 @@
 
 Scene * GameOverScene::createScene()
 {
-	return nullptr;
+	return GameOverScene::create();
 }
 
 bool GameOverScene::init()

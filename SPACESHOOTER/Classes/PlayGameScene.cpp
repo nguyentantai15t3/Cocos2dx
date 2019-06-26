@@ -43,6 +43,7 @@ bool PlayGameScene::init()
 int temp2 = 0;
 void PlayGameScene::update(float deltaTime)
 {
+	m_spaceShip->Collision(m_rocks);
 	m_spaceShip->update(deltaTime);
 	if (temp2 == 15)
 	{

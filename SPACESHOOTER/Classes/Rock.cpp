@@ -6,7 +6,7 @@ Rock::Rock(Scene * scene)
 	this->init();
 	this->m_sprite->setVisible(false);
 	this->m_sprite->removeFromParent();
-	scene->addChild(this->m_sprite, 0);
+	scene->addChild(this->m_sprite, 1);
 }
 
 Rock::~Rock()
