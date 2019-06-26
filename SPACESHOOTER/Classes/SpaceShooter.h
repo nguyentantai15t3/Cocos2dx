@@ -14,10 +14,10 @@ class SpaceShooter: public Objectt
 public:
 	SpaceShooter(Scene *scene);
 	~SpaceShooter();
-	void init() override;
-	void update(float deltaTime) override;
+	void Init() override;
+	void Update(float deltaTime) override;
 	void Shoot();
-	void Collision(vector < Rock*>);
+	void Collision(vector < Rock*>,float deltaTime);
 private:
 	list<Objectt*> m_bullets;
 };

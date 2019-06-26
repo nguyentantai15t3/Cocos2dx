@@ -43,9 +43,9 @@ bool PlayGameScene::init()
 int temp2 = 0;
 void PlayGameScene::update(float deltaTime)
 {
-	m_spaceShip->Collision(m_rocks);
-	m_spaceShip->update(deltaTime);
-	if (temp2 == 15)
+	m_spaceShip->Collision(m_rocks,deltaTime);
+	m_spaceShip->Update(deltaTime);
+	if (temp2 == 10)
 	{
 		GenerateRock();
 		temp2 = 0;
@@ -58,7 +58,11 @@ void PlayGameScene::update(float deltaTime)
 	{
 		if (m_rocks[i]->GetSprite()->isVisible())
 		{
-			m_rocks[i]->update(deltaTime);			
+			m_rocks[i]->Update(deltaTime);
+			if (m_rocks[i]->GetSprite()->getPositionY() < 0)
+			{
+				m_rocks[i]->GetSprite()->setVisible(false);
+			}
 		}
 	}
 }

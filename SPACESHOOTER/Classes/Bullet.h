@@ -12,7 +12,7 @@ class Bullet : public Objectt
 public:
 	Bullet(Scene *scene);
 	~Bullet();
-	void init() override;
-	void update(float deltaTime) override;
+	void Init() override;
+	void Update(float deltaTime) override;
 };
 #endif

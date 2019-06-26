@@ -2,13 +2,14 @@
 #include "ResourceManager.h"
 #include "Bullet.h"
 #include "GameOverScene.h"
+#include "LoadingScene.h"
 #define SizeOfList 20
 
 int count=0;
 
 SpaceShooter::SpaceShooter(Scene * scene)
 {
-	this->init();
+	this->Init();
 	this->m_sprite->removeFromParent();
 	scene->addChild(this->m_sprite, 1);
 	for (int i = 0; i < SizeOfList; i++)
@@ -23,19 +24,18 @@ SpaceShooter::~SpaceShooter()
 {
 }
 
-void SpaceShooter::init()
+void SpaceShooter::Init()
 {
 	auto screenSize = Director::getInstance()->getVisibleSize();
-
 	this->m_sprite = ResourceManager::GetInstance()->GetSpriteById(4);
 	this->m_sprite->setPosition(screenSize.width / 2, 50);
 
 }
 int temp = 0;
-void SpaceShooter::update(float deltaTime)
+void SpaceShooter::Update(float deltaTime)
 {
-	
-	if (temp == 15)
+	auto height = Director::getInstance()->getVisibleSize().height + 10;
+	if (temp == 10)
 	{
 		Shoot();
 		temp = 0;
@@ -49,7 +49,11 @@ void SpaceShooter::update(float deltaTime)
 	{
 		if ((*member_bullets)->GetSprite()->isVisible())
 		{
-			(*member_bullets)->update(deltaTime);
+			(*member_bullets)->Update(deltaTime);
+			if ((*member_bullets)->GetSprite()->getPositionY() > height)
+			{
+				(*member_bullets)->GetSprite()->setVisible(false);
+			}
 		}
 		member_bullets++;
 	}
@@ -70,32 +74,36 @@ void SpaceShooter::Shoot()
 	}
 }
 
-void SpaceShooter::Collision(vector <Rock*> rocks)
+void SpaceShooter::Collision(vector <Rock*> rocks,float deltaTime)
 {
 	//	If (a->getBoundingBox()->intersectsRect(b-> getBoundingBox()))
-	for (int i = 0; i < rocks.size(); i++)
+	log("%f", deltaTime);
+	auto getBSpaceShip = this->m_sprite->getBoundingBox();
+	auto member_bullets = this->m_bullets.begin();
+	for (int i = 0; i < SizeOfList; i++)
 	{
-		if (rocks[i]->GetSprite()->isVisible()
-			&& (rocks[i]->GetSprite()->getBoundingBox().intersectsRect(this->m_sprite->getBoundingBox())))
+		if ((*member_bullets)->GetSprite()->isVisible())
 		{
-			Director::getInstance()->getRunningScene()->pause();
-			Director::getInstance()->replaceScene(TransitionFade::create(2.0f, GameOverScene::createScene()));
-		}
-		if (rocks[i]->GetSprite()->isVisible())
-		{
-			auto member_bullets = this->m_bullets.begin();
-			for (int i = 0; i < SizeOfList; i++)
+			for (int j = 0; j < rocks.size(); j++)
 			{
-				if (((*member_bullets)->GetSprite()->isVisible())
-					&& (rocks[i]->GetSprite()->getBoundingBox().intersectsRect((*member_bullets)->GetSprite()->getBoundingBox())))
+				auto getBRock = rocks.at(j)->GetSprite()->getBoundingBox();
+				auto getBBullet = (*member_bullets)->GetSprite()->getBoundingBox();
+				if (rocks.at(i)->GetSprite()->isVisible())
 				{
-					rocks[i]->GetSprite()->setVisible(false);
-					rocks[i]->GetSprite()->stopActionByTag(1);
-					(*member_bullets)->GetSprite()->setVisible(false);
-					(*member_bullets)->GetSprite()->stopActionByTag(1);
+					if (getBSpaceShip.intersectsRect(getBRock))
+					{
+						//Director::getInstance()->getRunningScene()->pause();
+						//Director::getInstance()->replaceScene(TransitionZoomFlipAngular::create(1, GameOverScene::createScene()));
+					}
+					if (getBRock.intersectsRect(getBBullet))
+					{
+						rocks.at(j)->GetSprite()->setVisible(false);
+						(*member_bullets)->GetSprite()->setVisible(false);
+					}
 				}
-			}
+			}			
 		}
+		member_bullets++;
 	}
 }
 

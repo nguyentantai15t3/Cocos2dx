@@ -7,5 +7,6 @@ Scene * GameOverScene::createScene()
 
 bool GameOverScene::init()
 {
-	return false;
+	if (!Scene::init())
+		return false;
 }
