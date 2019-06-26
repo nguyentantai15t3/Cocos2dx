@@ -9,10 +9,6 @@ Bullet::Bullet(Scene * scene)
 	scene->addChild(this->m_sprite,0);
 }
 
-Bullet::Bullet(const Bullet * bullet)
-{
-	this->m_sprite = bullet->m_sprite;
-}
 
 Bullet::~Bullet()
 {
