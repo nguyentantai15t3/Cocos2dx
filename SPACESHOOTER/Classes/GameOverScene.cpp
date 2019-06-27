@@ -2,10 +2,10 @@
 #include "ResourceManager.h"
 #include "PlayGameScene.h"
 #include "MainMenuScene.h"
-int scoreCurr=0;
+string scoreCurr= "";
 Scene * GameOverScene::createScene(int score)
 {
-	scoreCurr = score;
+	scoreCurr = to_string(score);
 	return GameOverScene::create();
 }
 
@@ -23,8 +23,8 @@ bool GameOverScene::init()
 	addChild(backGround, -100);
 
 	auto labelGameOver = ResourceManager::GetInstance()->GetLabelById(1);
+	labelGameOver->removeFromParent();
 	labelGameOver->setString("GAME OVER");
-	labelGameOver->setScale(2);
 	labelGameOver->setPosition(Vec2(screenSize.width / 2, screenSize.height / 1.5));
 	this->addChild(labelGameOver, 0);
 

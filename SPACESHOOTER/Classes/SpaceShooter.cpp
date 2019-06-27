@@ -48,10 +48,6 @@ void SpaceShooter::Update(float deltaTime)
 		if ((*member_bullets)->GetSprite()->isVisible())
 		{
 			(*member_bullets)->Update(deltaTime);
-			if ((*member_bullets)->GetSprite()->getPositionY() > height)
-			{
-				(*member_bullets)->GetSprite()->setVisible(false);
-			}
 		}
 		member_bullets++;
 	}
@@ -71,7 +67,6 @@ void SpaceShooter::Shoot()
 		member_bullets++;
 	}
 }
-int score = 0;
 void SpaceShooter::Collision(vector <Rock*> rocks)
 {
 	//	If (a->getBoundingBox()->intersectsRect(b-> getBoundingBox()))
@@ -104,6 +99,11 @@ void SpaceShooter::Collision(vector <Rock*> rocks)
 		}
 		member_bullets++;
 	}
+}
+
+void SpaceShooter::setScore()
+{
+	this->score = 0;
 }
 
 

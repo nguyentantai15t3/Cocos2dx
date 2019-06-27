@@ -37,32 +37,27 @@ bool PlayGameScene::init()
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
 	m_spaceShip = new SpaceShooter(this);
+	m_spaceShip->setScore();
 	scheduleUpdate();
 	return true;
 }
-int countt = 0;
+
 void PlayGameScene::update(float deltaTime)
 {
+	static int countt = 0;
 	m_spaceShip->Collision(m_rocks);
 	m_spaceShip->Update(deltaTime);
+	countt++;
 	if (countt == 10)
 	{
 		GenerateRock();
 		countt = 0;
-	}
-	else
-	{
-		countt++;
 	}
 	for (int i = 0; i < m_rocks.size(); i++)
 	{
 		if (m_rocks[i]->GetSprite()->isVisible())
 		{
 			m_rocks[i]->Update(deltaTime);
-			if (m_rocks[i]->GetSprite()->getPositionY() < 0)
-			{
-				m_rocks[i]->GetSprite()->setVisible(false);
-			}
 		}
 	}
 }
@@ -76,7 +71,7 @@ void PlayGameScene::GenerateRock()
 			auto screenSize = Director::getInstance()->getVisibleSize();
 			int width = screenSize.width;
 			m_rocks[i]->GetSprite()->setVisible(true);
-			m_rocks[i]->GetSprite()->setPosition(rand() % width, screenSize.height + 50);
+			m_rocks[i]->GetSprite()->setPosition(rand() % width, screenSize.height + 20);
 			break;
 		}
 	}

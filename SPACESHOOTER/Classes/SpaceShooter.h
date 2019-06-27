@@ -18,7 +18,9 @@ public:
 	void Update(float deltaTime) override;
 	void Shoot();
 	void Collision(vector < Rock*>);
+	void setScore();
 private:
 	list<Objectt*> m_bullets;
+	int score;
 };
 #endif

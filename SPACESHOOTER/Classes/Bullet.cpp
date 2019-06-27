@@ -25,5 +25,9 @@ void Bullet::Update(float deltaTime)
 {
 	auto move = MoveBy::create(deltaTime, Vec2(0, 5));
 	this->m_sprite->runAction(move);
+	if (this->m_sprite->getPositionY() > Director::getInstance()->getVisibleSize().height+10)
+	{
+		this->m_sprite->setVisible(false);
+	}
 }
 
