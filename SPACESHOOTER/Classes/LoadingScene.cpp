@@ -1,21 +1,20 @@
 #include "LoadingScene.h"
 #include "ResourceManager.h"
 #include "MainMenuScene.h"
+#include "GameOverScene.h"
 
 USING_NS_CC;
 
-int temp = 0;
-float temp2=0;
 
 Scene * LoadingScene::createScene()
 {
-	auto scene = Scene::create();
-	auto layer = LoadingScene::create();
-	scene->addChild(layer);
-	return scene;
+	return LoadingScene::create();
 }
 bool LoadingScene::init()
 {
+	if (!Scene::init())
+		return false;
+
 	auto screenSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
@@ -46,19 +45,20 @@ bool LoadingScene::init()
 	addChild(progress);
 
 	auto scale = ScaleBy::create(3, 100.0f, 1.0f);
-	scheduleUpdate();
 	progress->runAction(scale);
-	
+	scheduleUpdate();
 	return true;
 }
 
+float temp = 0;
+
 void LoadingScene::update(float deltaTime)
 {
-	temp++;
-	//temp2 += deltaTime;
-	//log("%f", temp2);
-	if(temp == 180 ) // 3s - 60fps/1s
+	temp += deltaTime;
+	log("%f", temp);
+	if(temp > 3.0f ) // 3s - 60fps/1s
 	{
-		Director::getInstance()->replaceScene(TransitionFade::create(1.0f, MainMenuScene::create()));
+		Director::getInstance()->getRunningScene()->pause();
+		Director::getInstance()->replaceScene(TransitionFade::create(2.0f, MainMenuScene::createScene()));
 	}
 }

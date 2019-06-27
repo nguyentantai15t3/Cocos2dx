@@ -7,7 +7,7 @@ USING_NS_CC;
 class GameOverScene : public Scene
 {
 public:
-	static Scene* createScene();
+	static Scene* createScene(int score);
 	virtual bool init() override;
 	CREATE_FUNC(GameOverScene);
 };

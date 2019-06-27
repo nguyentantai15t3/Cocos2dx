@@ -11,7 +11,6 @@ class Bullet : public Objectt
 {
 public:
 	Bullet(Scene *scene);
-	Bullet(const Bullet* bullet);
 	~Bullet();
 	void Init() override;
 	void Update(float deltaTime) override;
