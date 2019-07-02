@@ -1,30 +1,33 @@
-#SPRITE 7
-ID: 0
-PATH: %s/Sprites/background.png
-ID: 1
-PATH: %s/Sprites/logo.png
-ID: 2
-PATH: %s/Sprites/bullet.png
-ID: 3
-PATH: %s/Sprites/aestroid_dark.png
-ID: 4
-PATH: %s/Sprites/spaceship.png
-ID: 5
-PATH: %s/Sprites/loading.png
-ID: 6
-PATH: %s/Sprites/progress.png
-#BUTTON 3
-ID: 0
-NORMAL_PATH: %s/Buttons/play_normal.png
-PRESSED_PATH: %s/Buttons/play_pressed.png
-ID: 1
-NORMAL_PATH: %s/Buttons/resume_normal.png
-PRESSED_PATH: %s/Buttons/resume_pressed.png
-ID: 2
-NORMAL_PATH: %s/Buttons/home_normal.png
-PRESSED_PATH: %s/Buttons/home_pressed.png
-#FONT 2
-ID: 0
-PATH: %s/Fonts/MarkerFelt.ttf
-ID: 1
-PATH: %s/Fonts/arial.ttf
+#SPRITE
+7
+0
+%s/Sprites/background.png
+1
+%s/Sprites/logo.png
+2
+%s/Sprites/bullet.png
+3
+%s/Sprites/aestroid_dark.png
+4
+%s/Sprites/spaceship.png
+5
+%s/Sprites/loading.png
+6
+%s/Sprites/progress.png
+#BUTTON
+3
+0
+NORMAL_%s/Buttons/play_normal.png
+PRESSED_%s/Buttons/play_pressed.png
+1
+NORMAL_%s/Buttons/resume_normal.png
+PRESSED_%s/Buttons/resume_pressed.png
+2
+NORMAL_%s/Buttons/home_normal.png
+PRESSED_%s/Buttons/home_pressed.png
+#FONT
+2
+0
+%s/Fonts/MarkerFelt.ttf
+1
+%s/Fonts/arial.ttf 

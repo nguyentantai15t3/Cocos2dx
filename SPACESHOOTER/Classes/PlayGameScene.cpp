@@ -22,8 +22,12 @@ bool PlayGameScene::init()
 	auto backGround = ResourceManager::GetInstance()->GetSpriteById(0);
 	backGround->removeFromParent();
 	backGround->setAnchorPoint(Vec2(0, 0));
-	backGround->setScale(0.7f);
+	backGround->setScale(screenSize.width / backGround->getContentSize().width, screenSize.height / backGround->getContentSize().width);
 	addChild(backGround, -1);
+	labelscore = ResourceManager::GetInstance()->GetLabelById(0);
+	labelscore->removeFromParent();
+	labelscore->setPosition(screenSize.width / 2, screenSize.height * 2 / 2.5);
+	addChild(labelscore);
 
 	for (int i = 0; i < SizeOfRock ; i++) // add rock into list
 	{
@@ -37,7 +41,7 @@ bool PlayGameScene::init()
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
 	m_spaceShip = new SpaceShooter(this);
-	m_spaceShip->setScore();
+	m_spaceShip->setScore(0);
 	scheduleUpdate();
 	return true;
 }
@@ -48,7 +52,7 @@ void PlayGameScene::update(float deltaTime)
 	m_spaceShip->Collision(m_rocks);
 	m_spaceShip->Update(deltaTime);
 	countt++;
-	if (countt == 10)
+	if (countt == 20)
 	{
 		GenerateRock();
 		countt = 0;
@@ -60,6 +64,7 @@ void PlayGameScene::update(float deltaTime)
 			m_rocks[i]->Update(deltaTime);
 		}
 	}
+	labelscore->setString(to_string(m_spaceShip->getScore()));
 }
 
 void PlayGameScene::GenerateRock()
@@ -71,7 +76,7 @@ void PlayGameScene::GenerateRock()
 			auto screenSize = Director::getInstance()->getVisibleSize();
 			int width = screenSize.width;
 			m_rocks[i]->GetSprite()->setVisible(true);
-			m_rocks[i]->GetSprite()->setPosition(rand() % width, screenSize.height + 20);
+			m_rocks[i]->GetSprite()->setPosition(rand() % width, screenSize.height *1.1);
 			break;
 		}
 	}

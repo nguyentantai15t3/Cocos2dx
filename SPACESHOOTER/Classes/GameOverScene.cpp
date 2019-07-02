@@ -19,7 +19,7 @@ bool GameOverScene::init()
 	auto backGround = ResourceManager::GetInstance()->GetSpriteById(0);
 	backGround->removeFromParent();
 	backGround->setAnchorPoint(Vec2(0, 0));
-	backGround->setScale(0.7f);
+	backGround->setScale(screenSize.width / backGround->getContentSize().width, screenSize.height / backGround->getContentSize().width);
 	addChild(backGround, -100);
 
 	auto labelGameOver = ResourceManager::GetInstance()->GetLabelById(1);
@@ -35,7 +35,7 @@ bool GameOverScene::init()
 	this->addChild(labelScore, 0);
 
 	auto buttonResum = ResourceManager::GetInstance()->GetButtonById(1);
-	buttonResum->setPosition(Vec2(screenSize.width / 2 - 70, screenSize.height / 2 - 100));
+	buttonResum->setPosition(Vec2(screenSize.width / 3 , screenSize.height / 2.5 ));
 	buttonResum->removeFromParent();
 	buttonResum->setScale(0.5f);
 	addChild(buttonResum, 0);
@@ -54,7 +54,7 @@ bool GameOverScene::init()
 	});
 
 	auto buttonHome = ResourceManager::GetInstance()->GetButtonById(2);
-	buttonHome->setPosition(Vec2(screenSize.width / 2 + 70, screenSize.height / 2 - 100));
+	buttonHome->setPosition(Vec2(screenSize.width *2 / 3, screenSize.height / 2.5 ));
 	buttonHome->removeFromParent();
 	buttonHome->setScale(0.7f);
 	addChild(buttonHome, 1);

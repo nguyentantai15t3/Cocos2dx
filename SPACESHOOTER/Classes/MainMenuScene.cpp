@@ -18,7 +18,7 @@ bool MainMenuScene::init()
 	auto backGround = ResourceManager::GetInstance()->GetSpriteById(0);
 	backGround->removeFromParent();
 	backGround->setAnchorPoint(Vec2(0, 0));
-	backGround->setScale(0.7f);
+	backGround->setScale(screenSize.width / backGround->getContentSize().width, screenSize.height / backGround->getContentSize().width);
 	addChild(backGround, -1);
 
 	auto logoGame = ResourceManager::GetInstance()->GetSpriteById(1);
