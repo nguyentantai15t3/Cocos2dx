@@ -21,7 +21,7 @@ bool LoadingScene::init()
 	auto backGround = ResourceManager::GetInstance()->GetSpriteById(0);
 	backGround->removeFromParent();
 	backGround->setAnchorPoint(Vec2(0, 0));
-	backGround->setScale(0.7f);
+	backGround->setScale(screenSize.width / backGround->getContentSize().width, screenSize.height / backGround->getContentSize().width);
 	addChild(backGround, -1);
 
 	auto labelLoading = ResourceManager::GetInstance()->GetLabelById(0);
@@ -29,7 +29,7 @@ bool LoadingScene::init()
 	//text->setFontSize(100.0f);
 	//text->setString("Loading...");
 	//labelLoading->setContentSize();
-	labelLoading->setPosition(screenSize.width / 2, screenSize.height/2 + 50);
+	labelLoading->setPosition(screenSize.width / 2, screenSize.height/1.8);
 	labelLoading->setString("Loading...");
 	addChild(labelLoading, 0);
 
@@ -50,12 +50,12 @@ bool LoadingScene::init()
 	return true;
 }
 
-float temp = 0;
+
 
 void LoadingScene::update(float deltaTime)
 {
+	static float temp;
 	temp += deltaTime;
-	log("%f", temp);
 	if(temp > 3.0f ) // 3s - 60fps/1s
 	{
 		Director::getInstance()->getRunningScene()->pause();

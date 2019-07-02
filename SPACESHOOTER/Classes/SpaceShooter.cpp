@@ -29,9 +29,10 @@ void SpaceShooter::Init()
 	this->m_sprite->setPosition(screenSize.width / 2, 50);
 
 }
-int temp = 0;
+
 void SpaceShooter::Update(float deltaTime)
 {
+	static int temp = 0;
 	auto height = Director::getInstance()->getVisibleSize().height + 10;
 	if (temp == 10)
 	{
@@ -85,6 +86,7 @@ void SpaceShooter::Collision(vector <Rock*> rocks)
 					if (getBSpaceShip.intersectsRect(getBRock))
 					{
 						Director::getInstance()->getRunningScene()->pause();
+						this->setScore(score);
 						Director::getInstance()->replaceScene(TransitionFade::create(2.0f, GameOverScene::createScene(score)));
 						break;
 					}
@@ -101,9 +103,14 @@ void SpaceShooter::Collision(vector <Rock*> rocks)
 	}
 }
 
-void SpaceShooter::setScore()
+void SpaceShooter::setScore(int scr)
 {
-	this->score = 0;
+	this->score = scr;
+}
+
+int SpaceShooter::getScore()
+{
+	return this->score;
 }
 
 
